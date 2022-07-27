@@ -4,8 +4,7 @@ pipeline {
   }
     agent any
     stages {
-       
-        stage('Build') {
+      stage('Build') {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') 
