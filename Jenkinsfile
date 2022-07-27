@@ -1,6 +1,7 @@
 pipeline {
     environment {
      BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+     DEV_IP = "$(
   }
     agent any
     stages {
@@ -11,12 +12,16 @@ pipeline {
                     {
                         echo 'Building in ${env.BRANCH_NAME}'
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
+                 
                       //  sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
                     } 
                     if (env.BRANCH_NAME == 'dev') 
                     {  
                         echo 'Building in ${env.BRANCH_NAME}'
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'dev'
+                        sh "tar -cvz cvat.tar.gz * ; ls -lrth"
+                        sh "scp -r cvat.tar.gz ${DEV_IP}:/tmp/"
+                     
                          
                 //        sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
                     }
