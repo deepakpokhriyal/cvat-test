@@ -21,8 +21,8 @@ pipeline {
      stage('Deploy') {
             steps {
             echo "Deploy.."
-                sh "cd /var/lib/jenkins/cvat_data/cvat-dev/ && docker-compose down"
-                sh "docker rm -f '\$(docker ps -aq | grep -v bitbucket)'"
+                sh  "docker-compose down"
+                sh  "docker rm -f '\$(docker ps -aq | grep -v bitbucket)'"
                 sh "cd /var/lib/jenkins/cvat_data/cvat-dev/ && docker-compose up -d"
             }
         }
