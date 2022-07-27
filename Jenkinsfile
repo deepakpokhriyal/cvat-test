@@ -4,9 +4,9 @@ pipeline {
   }
     agent any
     stages {
-      stage('Build') {
+       stage('Build') {
             steps {
-                script {
+               script {
                     if (env.BRANCH_NAME == 'master') 
                     {
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
@@ -22,14 +22,7 @@ pipeline {
                     
                 }
             }
-            step('Test'){
-              steps {
-                script {
-                    sh "echo Testing...."
-                }
-            }   
-            }
-                
+      
         }
     }
 }
