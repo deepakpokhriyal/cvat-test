@@ -25,5 +25,27 @@ pipeline {
             }
       
         }
+        
+        stage('Deploy') {
+            steps {
+               script {
+                    if (env.BRANCH_NAME == 'master') 
+                    {
+                        echo 'Deploy in ${env.BRANCH_NAME} Server'
+                        sh "docker-compose down ; docker rm -f '\$(docker ps -aq | grep -i cvat)'"
+                        sh "docker-compose up -d"
+                        
+                    } 
+                    if (env.BRANCH_NAME == 'dev') 
+                    {  
+                        echo 'Deploy in ${env.BRANCH_NAME} Server'
+                        sh "docker-compose down ; docker rm -f '\$(docker ps -aq | grep -i cvat)'"
+                        sh "docker-compose up -d"
+                    }
+                    
+                }
+            }
+      
+        }
     }
 }
