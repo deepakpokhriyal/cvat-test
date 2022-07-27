@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+     BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+  }
     agent any
     stages {
         stage('test') {
@@ -14,7 +17,7 @@ pipeline {
         stage('test3') {
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'orgin/master') {
+                    if (env.BRANCH_NAME == 'master') {
                         echo 'I only execute on the master branch'
                     } else {
                         echo 'I execute elsewhere'
