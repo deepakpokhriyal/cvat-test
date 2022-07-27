@@ -1,16 +1,5 @@
 pipeline {
-    agent any
-
-    environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
-    }
-
-    stages {
-        stage('Build') {
-            steps {
-                sh 'printenv'
-            }
-        }
-    }
+  environment {
+     BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
+  }
 }
