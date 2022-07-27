@@ -14,10 +14,11 @@ pipeline {
                 sh 'echo $TEST'
             }
         }
-        stage('test3') {
+        stage('Build') {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') {
+                        git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
                         echo 'I only execute on the master branch'
                     } else {
                         echo 'I execute elsewhere'
