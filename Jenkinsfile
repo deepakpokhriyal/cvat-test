@@ -4,27 +4,33 @@ pipeline {
   }
     agent any
     stages {
-        stage('test') {
-            steps {
-                sh 'echo hello'
-            }
-        }
-        stage('test1') {
-            steps {
-                sh 'echo $TEST'
-            }
-        }
+       
         stage('Build') {
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'master') {
+                    if (env.BRANCH_NAME == 'master') 
+                    {
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
-                        echo 'I only execute on the master branch'
-                    } else {
-                        echo 'I execute elsewhere'
+                        echo "Building in ${env.BRANCH_NAME}"
+                      //  sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
+                    } 
+                    if (env.BRANCH_NAME == 'dev') 
+                    { 
+                        git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'dev'
+                        echo "Building in ${env.BRANCH_NAME}"
+                //        sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
                     }
+                    
                 }
             }
+            step('Test'){
+              steps {
+                script {
+                    sh "echo Testing...."
+                }
+            }   
+            }
+                
         }
     }
 }
