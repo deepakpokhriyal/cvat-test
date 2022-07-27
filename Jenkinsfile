@@ -9,14 +9,15 @@ pipeline {
                script {
                     if (env.BRANCH_NAME == 'master') 
                     {
+                        echo 'Building in ${env.BRANCH_NAME}'
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
-                          echo 'Building in ${env.BRANCH_NAME}'
                       //  sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
                     } 
                     if (env.BRANCH_NAME == 'dev') 
-                    { 
+                    {  
+                        echo 'Building in ${env.BRANCH_NAME}'
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'dev'
-                          sh  echo "Building in ${env.BRANCH_NAME}"
+                         
                 //        sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
                     }
                     
