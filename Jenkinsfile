@@ -1,16 +1,25 @@
 pipeline {
     agent any
-
-    environment {
-        DISABLE_AUTH = 'true'
-        BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
-    }
-
     stages {
-        stage('Build') {
+        stage('test') {
             steps {
-    //          sh "echo ${BRANCH_NAME}"
-               echo "env.BRANCH_NAME"
+                sh 'echo hello'
+            }
+        }
+        stage('test1') {
+            steps {
+                sh 'echo $TEST'
+            }
+        }
+        stage('test3') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME == 'master') {
+                        echo 'I only execute on the master branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
+                }
             }
         }
     }
