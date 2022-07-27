@@ -10,7 +10,7 @@ pipeline {
                     if (env.BRANCH_NAME == 'master') 
                     {
                         git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
-                          sh echo "Building in ${env.BRANCH_NAME}"
+                          sh "Building in ${env.BRANCH_NAME}"
                       //  sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
                     } 
                     if (env.BRANCH_NAME == 'dev') 
