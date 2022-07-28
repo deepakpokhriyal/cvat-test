@@ -5,31 +5,45 @@ pipeline {
   }
     agent any
     stages {
-       stage('Build') {
+       stage('Clone') {
             steps {
                script {
                     if (env.BRANCH_NAME == 'master') 
                     {
-                       echo 'Building in ${env.BRANCH_NAME}' 
-                       sh "sh /var/lib/jenkins/scripts/build.sh 192.168.56.77 master" 
+                       echo 'Cloning the latest Repo' 
+                       sh "sh /var/lib/jenkins/scripts/clone.sh 192.168.56.77 master" 
            
                     } 
-                    if (env.BRANCH_NAME == 'dev') 
-                    {  
-                        echo 'Building in ${env.BRANCH_NAME}'
-                        sh "./var/lib/jenkins/scripts/build.sh 192.168.56.78 '${env.BRANCH_NAME}' " 
- 
-                    }
-                    
+
                 }
             }
       
         }
         
-        stage('Deploy') {
+        stage('Build') {
             steps {
                script {
-                   echo "helo"
+                   if (env.BRANCH_NAME == 'master') 
+                    {
+                       echo 'Building the latest Images' 
+                       sh "sh /var/lib/jenkins/scripts/build.sh 192.168.56.77 master" 
+           
+                    } 
+
+                }
+            }
+      
+        }
+        
+       stage('Deploy') {
+            steps {
+               script {
+                   if (env.BRANCH_NAME == 'master') 
+                    {
+                       echo 'Deploying' 
+               //        sh "sh /var/lib/jenkins/scripts/build.sh 192.168.56.77 master" 
+           
+                    } 
 
                 }
             }
