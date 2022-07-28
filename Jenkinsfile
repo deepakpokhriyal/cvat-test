@@ -10,18 +10,15 @@ pipeline {
                script {
                     if (env.BRANCH_NAME == 'master') 
                     {
-                       sh "bash /var/lib/jenkins/scripts/build.sh 192.168.56.77 ${env.BRANCH_NAME} " 
+                       echo 'Building in ${env.BRANCH_NAME}' 
+                       sh "./var/lib/jenkins/scripts/build.sh 192.168.56.77 ${env.BRANCH_NAME} " 
            
                     } 
                     if (env.BRANCH_NAME == 'dev') 
                     {  
                         echo 'Building in ${env.BRANCH_NAME}'
-                        git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'dev'
-                        sh "tar -cvz cvat.tar.gz * ; ls -lrth"
-                        sh "scp -r cvat.tar.gz ${DEV_IP}:/tmp/"
-                     
-                         
-                //        sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
+                        sh "./var/lib/jenkins/scripts/build.sh 192.168.56.78 ${env.BRANCH_NAME} " 
+ 
                     }
                     
                 }
