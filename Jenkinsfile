@@ -10,10 +10,10 @@ pipeline {
                script {
                     if (env.BRANCH_NAME == 'master') 
                     {
+                        sh '''#!/bin/bash
                         echo 'Building in ${env.BRANCH_NAME}'
-                        git url: 'https://github.com/deepakpokhriyal/cvat-test.git', branch: 'master'
-                 
-                      //  sh "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build"
+                         '''
+           
                     } 
                     if (env.BRANCH_NAME == 'dev') 
                     {  
@@ -34,20 +34,8 @@ pipeline {
         stage('Deploy') {
             steps {
                script {
-                    if (env.BRANCH_NAME == 'master') 
-                    {
-                        echo 'Deploy in ${env.BRANCH_NAME} Server'
-                        sh "docker-compose down ; docker rm -f '\$(docker ps -aq | grep -i cvat)'"
-                        sh "docker-compose up -d"
-                        
-                    } 
-                    if (env.BRANCH_NAME == 'dev') 
-                    {  
-                        echo 'Deploy in ${env.BRANCH_NAME} Server'
-                        sh "docker-compose down ; docker rm -f '\$(docker ps -aq | grep -i cvat)'"
-                        sh "docker-compose up -d"
-                    }
-                    
+                   echo "helo"
+
                 }
             }
       
