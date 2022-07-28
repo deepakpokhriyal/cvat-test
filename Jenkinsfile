@@ -1,7 +1,7 @@
 pipeline {
     environment {
      BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
-     DEV_IP = "$(
+     
   }
     agent any
     stages {
