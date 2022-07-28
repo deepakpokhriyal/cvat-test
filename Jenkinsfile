@@ -11,13 +11,13 @@ pipeline {
                     if (env.BRANCH_NAME == 'master') 
                     {
                        echo 'Building in ${env.BRANCH_NAME}' 
-                       sh "/var/lib/jenkins/scripts/build.sh 192.168.56.77 ${env.BRANCH_NAME} " 
+                       sh "sh /var/lib/jenkins/scripts/build.sh 192.168.56.77 '${env.BRANCH_NAME}'" 
            
                     } 
                     if (env.BRANCH_NAME == 'dev') 
                     {  
                         echo 'Building in ${env.BRANCH_NAME}'
-                        sh "./var/lib/jenkins/scripts/build.sh 192.168.56.78 ${env.BRANCH_NAME} " 
+                        sh "./var/lib/jenkins/scripts/build.sh 192.168.56.78 '${env.BRANCH_NAME}' " 
  
                     }
                     
