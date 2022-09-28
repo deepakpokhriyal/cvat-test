@@ -2,19 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('test') {
             steps {
-                echo 'Building..'
+                sh 'echo hello'
             }
         }
-        stage('Test') {
+        stage('test1') {
             steps {
-                echo 'Sure Testing..'
+                sh 'echo $TEST'
             }
         }
-        stage('Deploy') {
+        stage('test3') {
             steps {
-                echo 'Deploying....'
+                script {
+                    if (env.BRANCH_NAME == 'master') {
+                        echo 'I only execute on the master branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
+                }
             }
         }
     }
