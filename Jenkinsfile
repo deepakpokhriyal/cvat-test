@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('test') {
+        stage('clone') {
             steps {
                 sh 'echo hello'
             }
         }
-        stage('test1') {
+        stage('build') {
             steps {
                 sh 'echo $TEST'
             }
