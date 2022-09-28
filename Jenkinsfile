@@ -7,10 +7,14 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('BranchCheck') {
             steps {
-               
-                sh 'printenv'
+              if (env.BRANCH_NAME == 'master') {
+              echo 'Hello from main branch'
+              } else {
+              sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+               }
+               // sh 'printenv'
             }
         }
     }
