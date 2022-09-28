@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                sh 'echo hello'
+                sh 'echo #############  CLONING ################'
             }
         }
         stage('build') {
             steps {
-                sh 'echo $TEST'
+                sh 'echo ########### BUILD ##############'
+                sh 'docker-compose -f docker-compose.yml -f docker-compose.https.yml up -d'
             }
         }
         stage('Deploy') {
