@@ -12,7 +12,7 @@ pipeline {
                 sh 'echo $TEST'
             }
         }
-        stage('test3') {
+        stage('Deploy') {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') {
