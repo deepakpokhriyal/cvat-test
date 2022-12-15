@@ -11,7 +11,9 @@ pipeline {
             steps {
                 sh 'echo ########### BUILD ##############'
                 sh 'pwd'
-                sh 'docker-compose -f docker-compose.yml -f components/analytics/docker-compose.analytics.yml up -d --build'
+                sh 'hostname'
+                sh 'ip a'
+                
             }
         }
         stage('Deploy') {
