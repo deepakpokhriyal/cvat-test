@@ -20,7 +20,7 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME == 'master') {
                         echo 'I only execute on the master branch'
-                        sh 'docker-compose up -d'
+                       
                     } else {
                         echo 'I execute elsewhere'
                     }
