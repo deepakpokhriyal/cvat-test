@@ -12,7 +12,6 @@ pipeline {
                 sh 'echo ########### BUILD ##############'
                 sh 'pwd'
                 sh 'hostname'
-                sh 'ip a'
                 
             }
         }
