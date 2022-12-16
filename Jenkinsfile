@@ -16,10 +16,7 @@ pipeline {
                 sh 'echo ########### BUILD ##############'
                 sh 'pwd'
                 sh 'hostname'
-                sh 'sudo usermod -aG docker ${USER}'
-                sh 'export DOCKER_HOST=127.0.0.1'
-                sh 'sudo systemctl restart docker'
-                sh 'sudo docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f components/analytics/docker-compose.analytics.yml build'
+               // sh 'sudo docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f components/analytics/docker-compose.analytics.yml build'
             }
         }
        
@@ -30,6 +27,7 @@ pipeline {
                     if (env.BRANCH_NAME == 'master') {
                         echo 'I only execute on the master branch'
                         sh 'hostname'
+                        sh 'sudo helm upgrade -i cvat ./helm-chart -f ./helm-chart/values.yaml'
                        
                     } else {
                         echo 'I execute elsewhere'
