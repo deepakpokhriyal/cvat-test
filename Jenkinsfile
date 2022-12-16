@@ -19,7 +19,7 @@ pipeline {
                 sh 'sudo usermod -aG docker ${USER}'
                 sh 'export DOCKER_HOST=127.0.0.1'
                 sh 'sudo systemctl restart docker'
-                sh 'docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f components/analytics/docker-compose.analytics.yml build'
+                sh 'sudo docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f components/analytics/docker-compose.analytics.yml build'
             }
         }
        
