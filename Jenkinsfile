@@ -16,6 +16,8 @@ pipeline {
                 sh 'echo ########### BUILD ##############'
                 sh 'pwd'
                 sh 'hostname'
+                sh 'sudo usermod -aG docker ${USER}'
+                sh 'sudo systemctl restart docker'
                 sh 'docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f components/analytics/docker-compose.analytics.yml build'
             }
         }
