@@ -27,7 +27,7 @@ pipeline {
                     if (env.BRANCH_NAME == 'master') {
                         echo 'I only execute on the master branch'
                         sh 'hostname'
-                        sh 'sudo helm upgrade -i cvat ./helm-chart -f ./helm-chart/values.yaml'
+                        sh 'helm upgrade -i cvat ./helm-chart -f ./helm-chart/values.yaml'
                        
                     } else {
                         echo 'I execute elsewhere'
