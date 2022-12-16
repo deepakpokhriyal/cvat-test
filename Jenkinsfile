@@ -3,7 +3,7 @@ pipeline {
      BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
      
   }
-    agent any
+    agent { label 'Master' }
     stages {
        stage('Clone') {
             steps {
@@ -11,7 +11,7 @@ pipeline {
                     if (env.BRANCH_NAME == 'master') 
                     {
                        echo 'Cloning the latest Repo' 
-                       sh "sh /var/lib/jenkins/scripts/clone.sh 192.168.56.77 master" 
+                //       sh "sh /var/lib/jenkins/scripts/clone.sh 192.168.56.77 master" 
            
                     } 
 
@@ -26,7 +26,7 @@ pipeline {
                    if (env.BRANCH_NAME == 'master') 
                     {
                        echo 'Building the latest Images' 
-                       sh "sh /var/lib/jenkins/scripts/build.sh 192.168.56.77 master" 
+               //        sh "sh /var/lib/jenkins/scripts/build.sh 192.168.56.77 master" 
            
                     } 
 
