@@ -5,9 +5,13 @@ pipeline {
         stage('clone') {
             steps {
                 sh 'echo #############  Cloning to Master Server ################'
+                sh 'hostname'
             }
         }
         stage('build') {
+            agent {
+                        label "vagrant"
+                    }
             steps {
                 sh 'echo ########### BUILD ##############'
                 sh 'pwd'
@@ -17,9 +21,7 @@ pipeline {
         }
        
         stage('Deploy') {
-             agent {
-                        label "vagrant"
-                    }
+             
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') {
