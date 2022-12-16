@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                sh 'echo #############  CLONING ################'
+                sh 'echo #############  Cloning to Master Server ################'
             }
         }
         stage('build') {
@@ -12,7 +12,7 @@ pipeline {
                 sh 'echo ########### BUILD ##############'
                 sh 'pwd'
                 sh 'hostname'
-                
+                sh 'docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f components/analytics/docker-compose.analytics.yml build'
             }
         }
        
