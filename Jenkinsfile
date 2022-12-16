@@ -15,9 +15,10 @@ pipeline {
                 
             }
         }
-     agent { label 'vagrant' }
+       
         stage('Deploy') {
             steps {
+                node('vagrant')
                 script {
                     if (env.BRANCH_NAME == 'master') {
                         echo 'I only execute on the master branch'
