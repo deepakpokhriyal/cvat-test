@@ -1,5 +1,5 @@
 pipeline {
-    agent vagrant
+    agent none
 
     stages {
         stage('clone') {
